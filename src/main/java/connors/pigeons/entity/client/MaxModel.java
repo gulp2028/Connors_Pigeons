@@ -2,13 +2,14 @@ package connors.pigeons.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class MaxModel {
+public class MaxModel extends EntityModel<MaxRenderState> {
         private final ModelPart head;
         private final ModelPart right_arm;
         private final ModelPart left_arm;
