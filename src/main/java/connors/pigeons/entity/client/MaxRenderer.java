@@ -28,6 +28,7 @@ public class MaxRenderer extends MobRenderer<MaxEntity, MaxRenderState, MaxModel
     @Override
     public void extractRenderState(MaxEntity entity, MaxRenderState state, float partialTicks) {
         super.extractRenderState(entity, state, partialTicks);
+        state.idleAnimationState.copyFrom(entity.idleAnimationState);
     }
 }
 
