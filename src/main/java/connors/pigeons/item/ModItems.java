@@ -33,6 +33,8 @@ public class ModItems {
                 }
 
         );
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.SPAWN_EGGS).register(output ->
+                output.accept(MAX_SPAWN_EGG));
 
     }
 }
