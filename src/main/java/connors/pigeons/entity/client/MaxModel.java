@@ -22,7 +22,7 @@ public class MaxModel extends EntityModel<MaxRenderState> {
         private final ModelPart body;
 
         private final KeyframeAnimation walkingAnimation;
-        private final KeyframeAnimation standingAnimation;
+        private final KeyframeAnimation idlingAnimation;
 
 	public MaxModel(ModelPart root) {
         super(root);
@@ -32,6 +32,8 @@ public class MaxModel extends EntityModel<MaxRenderState> {
             this.left_leg = root.getChild("left_leg");
             this.right_leg = root.getChild("right_leg");
             this.body = root.getChild("body");
+            this.walkingAnimation = MaxAnimations.WALK.bake(root);
+            this.idlingAnimation = MaxAnimations.IDLE.bake(root);
         }
 
         public static LayerDefinition createBodyLayer() {
