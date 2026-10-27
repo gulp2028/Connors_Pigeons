@@ -48,6 +48,9 @@ public class MaxEntity extends TamableAnimal {
     protected void registerGoals(){
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(1, new TemptGoal(this, 1.2f, stack -> stack.is(Items.PAPER), false));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1f));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 6f));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
     }
 
 
