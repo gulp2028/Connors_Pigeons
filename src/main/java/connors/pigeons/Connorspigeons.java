@@ -1,5 +1,6 @@
 package connors.pigeons;
 
+import connors.pigeons.entity.ModEntities;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.resources.Identifier;
@@ -13,6 +14,7 @@ public class Connorspigeons implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModEntities.registerModEntities();
 
 
 		LOGGER.info("Hello Fabric world!");
