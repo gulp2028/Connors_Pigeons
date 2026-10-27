@@ -14,6 +14,7 @@ public class ConnorspigeonsClient implements ClientModInitializer {
     public void onInitializeClient() {
         ModelLayerRegistry.registerModelLayer(ModModelLayerLocations.MAX, MaxModel::createBodyLayer);
         EntityRenderers.register(ModEntities.MAX, MaxRenderer::new);
+
     }
 
 

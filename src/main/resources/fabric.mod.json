@@ -20,6 +20,9 @@
 		],
 		"fabric-datagen": [
 			"connors.pigeons.ConnorspigeonsDataGenerator"
+		],
+		"client": [
+			"connors.pigeons.ConnorspigeonsClient"
 		]
 	},
 	"mixins": [

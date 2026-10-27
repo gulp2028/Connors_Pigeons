@@ -16,7 +16,7 @@ public class ModEntities {
 
     public static final EntityType<MaxEntity> MAX = Registry.register(BuiltInRegistries.ENTITY_TYPE,
             Identifier.fromNamespaceAndPath(Connorspigeons.MOD_ID, "max"),
-            EntityType.Builder.of(MaxEntity::new, MobCategory.CREATURE).sized(0.75f, 0.5f).build(MAX_KEY));
+            EntityType.Builder.of(MaxEntity::new, MobCategory.CREATURE).sized(0.7f, 67f).build(MAX_KEY));
 
     public static void registerModEntities(){
         Connorspigeons.LOGGER.info("Registering Mod Entities for " + Connorspigeons.MOD_ID);

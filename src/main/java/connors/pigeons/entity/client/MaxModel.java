@@ -15,7 +15,7 @@ import net.minecraft.util.Keyframe;
 import net.minecraft.util.Mth;
 
 public class MaxModel extends EntityModel<MaxRenderState> {
-        private final ModelPart head;
+        private final ModelPart Head;
         private final ModelPart right_arm;
         private final ModelPart left_arm;
         private final ModelPart left_leg;
@@ -27,7 +27,7 @@ public class MaxModel extends EntityModel<MaxRenderState> {
 
 	public MaxModel(ModelPart root) {
         super(root);
-            this.head = root.getChild("head");
+            this.Head = root.getChild("head");
             this.right_arm = root.getChild("right_arm");
             this.left_arm = root.getChild("left_arm");
             this.left_leg = root.getChild("left_leg");
@@ -58,11 +58,18 @@ public class MaxModel extends EntityModel<MaxRenderState> {
 
         @Override
         public void setupAnim(MaxRenderState state) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
-        this.walkingAnimation.applyWalk(state.walkAnimationPos, state.walkAnimationSpeed, 2f, 2.6f);
-        this.idlingAnimation.apply(state.idleAnimationState, state.ageInTicks, 1f);
+            this.root().getAllParts().forEach(ModelPart::resetPose);
+            this.walkingAnimation.applyWalk(state.walkAnimationPos, state.walkAnimationSpeed, 2f, 2.6f);
+            this.idlingAnimation.apply(state.idleAnimationState, state.ageInTicks, 1f);
     }
+    private void applyHeadRotation(float headYaw, float headPitch) {
+        headYaw = Mth.clamp(headYaw, -30f, 30f);
+        headPitch = Mth.clamp(headPitch, -25f, 45);
+
+        this.Head.yRot = headYaw * ((float)Math.PI / 180f);
+        this.Head.xRot = headPitch *  ((float)Math.PI / 180f);
 
 
 
-    }
+
+    }}

@@ -42,7 +42,7 @@ public class MaxEntity extends TamableAnimal {
 
     }
 
-
+    @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack interactionItem = player.getItemInHand(hand);
         ItemStack itemInHand = this.getItemInHand(InteractionHand.MAIN_HAND);
