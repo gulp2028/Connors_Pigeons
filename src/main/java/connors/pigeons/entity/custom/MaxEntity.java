@@ -55,16 +55,29 @@ public class MaxEntity extends TamableAnimal {
 
     }
 
-    //copper golem mobinteract code
+
     public InteractionResult mobInteract(Player player, InteractionHand hand){
         ItemStack itemStack = player.getItemInHand(hand);
-        if ((itemStack.isEmpty())){
+        //allay mobinteract code
+        if (itemInHand.isEmpty() && !interactionItem.isEmpty()) {
+            ItemStack itemToGive = interactionItem.copyWithCount(1);
+            this.setItemInHand(
+                    InteractionHand.MAIN_HAND,
+                    itemToGive);
+            this.removeInteractionItem(player, interactionItem);
+            return InteractionResult.SUCCESS;
+        }
+        //copper golem mobinteract code
+        else if ((itemStack.isEmpty())){
             ItemStack equippedItem = this.getMainHandItem();
             if(!equippedItem.isEmpty()){
                 BehaviorUtils.throwItem(this, equippedItem, player.position());
+                this.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+                return InteractionResult.SUCCESS;
 
             }
         }
+        Level level = this.level()
     }
 
 
