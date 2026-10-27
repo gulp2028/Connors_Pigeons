@@ -59,12 +59,18 @@ public class MaxEntity extends TamableAnimal {
             this.idleAnimationTimeout = 40;
             this.idleAnimationState.start(this.tickCount);
         }else{
-            --this.idleAnimationTimeout();
+            --this.idleAnimationTimeout;
+        }
+    }
+    @Override
+    public void tick(){
+        super.tick();
+        if(this.level().isClientSide()){
+            this.setupAnimationStates();
         }
     }
 
-    private void idleAnimationTimeout() {
-    }
+
 
 
 }
