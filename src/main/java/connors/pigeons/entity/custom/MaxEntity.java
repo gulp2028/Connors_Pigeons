@@ -52,8 +52,19 @@ public class MaxEntity extends TamableAnimal {
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1f));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6f));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+
+    }
+    private void setupAnimationStates(){
+        if(this.idleAnimationTimeout <= 0){
+            this.idleAnimationTimeout = 40;
+            this.idleAnimationState.start(this.tickCount);
+        }else{
+            --this.idleAnimationTimeout();
+        }
     }
 
+    private void idleAnimationTimeout() {
+    }
 
 
 }
