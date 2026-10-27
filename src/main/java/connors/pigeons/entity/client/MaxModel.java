@@ -2,6 +2,7 @@ package connors.pigeons.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -10,6 +11,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Keyframe;
 
 public class MaxModel extends EntityModel<MaxRenderState> {
         private final ModelPart head;
@@ -19,7 +21,10 @@ public class MaxModel extends EntityModel<MaxRenderState> {
         private final ModelPart right_leg;
         private final ModelPart body;
 
-	public Max(ModelPart root) {
+        private final KeyframeAnimation walkingAnimation;
+        private final KeyframeAnimation standingAnimation;
+
+	public MaxModel(ModelPart root) {
         super(root);
             this.head = root.getChild("head");
             this.right_arm = root.getChild("right_arm");
