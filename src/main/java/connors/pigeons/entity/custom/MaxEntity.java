@@ -10,6 +10,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.golem.AbstractGolem;
@@ -53,6 +54,21 @@ public class MaxEntity extends TamableAnimal {
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
 
     }
+
+    //copper golem mobinteract code
+    public InteractionResult mobInteract(Player player, InteractionHand hand){
+        ItemStack itemStack = player.getItemInHand(hand);
+        if ((itemStack.isEmpty())){
+            ItemStack equippedItem = this.getMainHandItem();
+            if(!equippedItem.isEmpty()){
+                BehaviorUtils.throwItem(this, equippedItem, player.position());
+
+            }
+        }
+    }
+
+
+
     private void setupAnimationStates(){
         if(this.idleAnimationTimeout <= 0){
             this.idleAnimationTimeout = 40;
