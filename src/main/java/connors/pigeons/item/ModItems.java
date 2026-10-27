@@ -1,6 +1,7 @@
 package connors.pigeons.item;
 
 import connors.pigeons.Connorspigeons;
+import connors.pigeons.entity.ModEntities;
 import connors.pigeons.item.custom.Pigeon_GloveItem;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
@@ -10,12 +11,15 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SpawnEggItem;
 
 import java.util.function.Function;
 
 public class ModItems {
     public static final Item PIGEON_GLOVE = registerItem("pigeon_glove",
            properties -> new Pigeon_GloveItem(properties));
+    public static final Item MAX_SPAWN_EGG = registerItem("max_spawn_egg",
+            properties -> new SpawnEggItem(properties.spawnEgg(ModEntities.MAX)));
 
 
     private static Item registerItem(String name, Function<Item.Properties, Item> function) {
