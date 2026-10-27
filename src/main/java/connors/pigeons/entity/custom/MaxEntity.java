@@ -78,6 +78,7 @@ public class MaxEntity extends TamableAnimal {
 
             }
         }
+        return super.mobInteract(player, hand);
     }
     private void removeInteractionItem(final Player player, final ItemStack interactionItem) {
         interactionItem.consume(1, player);
