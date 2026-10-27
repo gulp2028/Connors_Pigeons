@@ -5,6 +5,8 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
@@ -18,6 +20,7 @@ public class MaxModel extends EntityModel<MaxRenderState> {
         private final ModelPart body;
 
 	public Max(ModelPart root) {
+        super(root);
             this.head = root.getChild("head");
             this.right_arm = root.getChild("right_arm");
             this.left_arm = root.getChild("left_arm");
@@ -46,18 +49,9 @@ public class MaxModel extends EntityModel<MaxRenderState> {
         }
 
         @Override
-        public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        public void setupAnim(MaxRenderState state) {
 
         }
 
-        @Override
-        public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-            head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-            right_arm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-            left_arm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-            left_leg.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-            right_leg.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-            body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-        }
+
     }
-}
