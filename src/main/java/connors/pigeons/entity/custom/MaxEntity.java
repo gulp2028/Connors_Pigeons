@@ -1,19 +1,23 @@
 package connors.pigeons.entity.custom;
 
 import connors.pigeons.item.ModItems;
-import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.MinecartItem;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
-public class WarturtleEntity extends TamableAnimal implements ContainerListener, HasCustomInventoryScreen {
+import java.awt.event.ContainerListener;
+import java.awt.print.Paper;
+
+public class MaxEntity extends TamableAnimal implements ContainerListener, HasCustomInventoryScreen {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
@@ -24,15 +28,7 @@ public class WarturtleEntity extends TamableAnimal implements ContainerListener,
     public static final EntityDataAccessor<Long> LAST_POSE_TICK =
             SynchedEntityData.defineId(WarturtleEntity.class, EntityDataSerializers.LONG);
 
-    public static final EntityDataAccessor<Boolean> HAS_TIER_1_CHEST =
-            SynchedEntityData.defineId(WarturtleEntity.class, EntityDataSerializers.BOOLEAN);
-    public static final EntityDataAccessor<Boolean> HAS_TIER_2_CHEST =
-            SynchedEntityData.defineId(WarturtleEntity.class, EntityDataSerializers.BOOLEAN);
-    public static final EntityDataAccessor<Boolean> HAS_TIER_3_CHEST =
-            SynchedEntityData.defineId(WarturtleEntity.class, EntityDataSerializers.BOOLEAN);
 
-    public static final EntityDataAccessor<ItemStack> DYE_STACK =
-            SynchedEntityData.defineId(WarturtleEntity.class, EntityDataSerializers.ITEM_STACK);
 
     protected SimpleContainer inventory;
 
@@ -40,7 +36,7 @@ public class WarturtleEntity extends TamableAnimal implements ContainerListener,
     private final int TIER_2_CHEST_SLOT = 3;
     private final int TIER_3_CHEST_SLOT = 4;
 
-    public WarturtleEntity(EntityType<? extends TamableAnimal> type, Level level) {
+    public MaxEntity(EntityType<? extends TamableAnimal> type, Level level) {
         super(type, level);
         this.createInventory();
     }
@@ -52,10 +48,9 @@ public class WarturtleEntity extends TamableAnimal implements ContainerListener,
         this.goalSelector.addGoal(1, new SitWhenOrderedToGoal(this));
 
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.15D));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(ModItems.STRAWBERRY), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(Paper), false));
 
         this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.1D, 10f, 3f));
-        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
 
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 4.0F));
@@ -64,8 +59,8 @@ public class WarturtleEntity extends TamableAnimal implements ContainerListener,
 
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 10d)
-                .add(Attributes.MOVEMENT_SPEED, 0.25D)
+                .add(Attributes.MAX_HEALTH, 6d)
+                .add(Attributes.MOVEMENT_SPEED, 0.4D)
                 .add(Attributes.TEMPT_RANGE, 16d)
                 .add(Attributes.FOLLOW_RANGE, 24D);
     }
@@ -73,7 +68,7 @@ public class WarturtleEntity extends TamableAnimal implements ContainerListener,
     /* BREEDABLE */
     @Override
     public boolean isFood(ItemStack itemStack) {
-        return itemStack.is(ModItems.STRAWBERRY);
+        return itemStack.is();
     }
 
     @Override
