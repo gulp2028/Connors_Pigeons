@@ -22,7 +22,12 @@ public class MaxRenderer extends MobRenderer<MaxEntity, MaxRenderState, MaxModel
 
     @Override
     public MaxRenderState createRenderState() {
-        return null;
+        return new MaxRenderState();
+    }
+
+    @Override
+    public void extractRenderState(MaxEntity entity, MaxRenderState state, float partialTicks) {
+        super.extractRenderState(entity, state, partialTicks);
     }
 }
 
