@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Keyframe;
+import net.minecraft.util.Mth;
 
 public class MaxModel extends EntityModel<MaxRenderState> {
         private final ModelPart head;
@@ -57,8 +58,11 @@ public class MaxModel extends EntityModel<MaxRenderState> {
 
         @Override
         public void setupAnim(MaxRenderState state) {
+        this.root().getAllParts().forEach(ModelPart::resetPose);
+        this.walkingAnimation.applyWalk(state.walkAnimationPos, state.walkAnimationSpeed, 2f, 2.6f);
+        this.idlingAnimation.apply(state.idleAnimationState, state.ageInTicks, 1f);
+    }
 
-        }
 
 
     }

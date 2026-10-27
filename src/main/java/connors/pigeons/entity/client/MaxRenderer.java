@@ -6,5 +6,5 @@ import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.LivingEntity;
 
 public class MaxRenderer extends LivingEntityRenderState {
-    public final AnimationState idleAnimationState = new AnimationState();
+
 }
