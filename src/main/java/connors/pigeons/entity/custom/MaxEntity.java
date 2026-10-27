@@ -34,6 +34,22 @@ public class MaxEntity extends TamableAnimal {
     protected MaxEntity(EntityType<? extends TamableAnimal> type, Level level) {
         super(type, level);
     }
-    public MaxEntity(MaxEntity)
+    public MaxEntity(MaxEntity<?extends TamableAnimal> entityType, Level world){
+        super(entityType, world);
+    }
+    public static AttributeSupplier.Builder createMobAttributes() {
+        return Animal.createAnimalAttributes()
+                .add(Attributes.MOVEMENT_SPEED, 0.3F)
+                .add(Attributes.MAX_HEALTH, 7.0F)
+                .add(Attributes.TEMPT_RANGE, 16d)
+                .add(Attributes.FOLLOW_RANGE, 24D);
+    }
+    @Override
+    protected void registerGoals(){
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new TemptGoal(this, 1.2f, stack -> stack.is(Items.PAPER), false));
+    }
+
+
 
 }
