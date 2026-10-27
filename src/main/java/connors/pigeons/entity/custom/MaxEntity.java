@@ -12,6 +12,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.golem.AbstractGolem;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -24,19 +25,17 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
-import java.awt.event.ContainerListener;
-import java.awt.print.Paper;
-import java.util.UUID;
 
 public class MaxEntity extends TamableAnimal {
-    protected MaxEntity(EntityType<? extends TamableAnimal> type, Level level) {
-        super(type, level);
+    public final AnimationState idleAnimationState =  new AnimationState();
+    private int idleAnimationTimeout = 0;
+    public MaxEntity(EntityType<? extends TamableAnimal> Entitytype, Level world){
+        super(Entitytype, world);
+        this.getNavigation().setCanOpenDoors(true);
     }
-    public MaxEntity(MaxEntity<?extends TamableAnimal> entityType, Level world){
-        super(entityType, world);
-    }
+
     public static AttributeSupplier.Builder createMobAttributes() {
         return Animal.createAnimalAttributes()
                 .add(Attributes.MOVEMENT_SPEED, 0.3F)
@@ -71,6 +70,16 @@ public class MaxEntity extends TamableAnimal {
     }
 
 
+    @Override
+    public boolean isFood(ItemStack itemStack) {
+        return false;
+    }
 
-
+    @Override
+    public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob partner) {
+        return null;
+    }
+    @Override
+    protected void pushEntities() {
+    }
 }
