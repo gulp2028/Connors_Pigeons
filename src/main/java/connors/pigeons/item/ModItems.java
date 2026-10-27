@@ -17,7 +17,7 @@ import java.util.function.Function;
 
 public class ModItems {
     public static final Item PIGEON_GLOVE = registerItem("pigeon_glove",
-           properties -> new Pigeon_GloveItem(properties));
+            Pigeon_GloveItem::new);
     public static final Item MAX_SPAWN_EGG = registerItem("max_spawn_egg",
             properties -> new SpawnEggItem(properties.spawnEgg(ModEntities.MAX)));
 

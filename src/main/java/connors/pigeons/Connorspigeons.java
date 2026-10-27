@@ -2,6 +2,7 @@ package connors.pigeons;
 
 import connors.pigeons.entity.ModEntities;
 import connors.pigeons.entity.custom.MaxEntity;
+import connors.pigeons.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -17,6 +18,7 @@ public class Connorspigeons implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModEntities.registerModEntities();
+		ModItems.registerModItems();
 		FabricDefaultAttributeRegistry.register(ModEntities.MAX, MaxEntity.createMobAttributes());
 
 
