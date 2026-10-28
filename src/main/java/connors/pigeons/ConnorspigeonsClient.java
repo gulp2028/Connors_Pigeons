@@ -1,7 +1,6 @@
 package connors.pigeons;
 
 import connors.pigeons.entity.ModEntities;
-import connors.pigeons.entity.client.MaxOldModel;
 import connors.pigeons.entity.client.MaxRenderer;
 import connors.pigeons.entity.client.ModModelLayerLocations;
 import net.fabricmc.api.ClientModInitializer;

@@ -5,6 +5,7 @@
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import connors.pigeons.entity.client.MaxAnimations;
 import connors.pigeons.entity.client.MaxRenderState;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -14,9 +15,8 @@ import net.minecraft.client.model.geom.builders.*;
 
 import javax.swing.text.html.parser.Entity;
 
-public class MaxModel<T extends Entity> extends EntityModel<MaxRenderState> {
+public class MaxModel extends EntityModel <MaxRenderState> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "max"), "main");
 	private final ModelPart head;
 	private final ModelPart right_arm;
 	private final ModelPart left_arm;
@@ -32,6 +32,8 @@ public class MaxModel<T extends Entity> extends EntityModel<MaxRenderState> {
 		this.left_leg = root.getChild("left_leg");
 		this.right_leg = root.getChild("right_leg");
 		this.body = root.getChild("body");
+		this.walkingAnimation = MaxAnimations.WALK.bake(root);
+		this.idlingAnimation = MaxAnimations.IDLE.bake(root);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -72,4 +74,7 @@ public class MaxModel<T extends Entity> extends EntityModel<MaxRenderState> {
 		this.idlingAnimation.apply(state.idleAnimationState, state.ageInTicks, 1f);
 	}
 
+}
+
+void main() {
 }
