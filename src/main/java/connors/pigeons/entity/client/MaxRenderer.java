@@ -1,23 +1,14 @@
 package connors.pigeons.entity.client;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import connors.pigeons.Connorspigeons;
 import connors.pigeons.entity.custom.MaxEntity;
-import net.minecraft.client.renderer.SubmitNodeCollection;
-import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
-import net.minecraft.client.renderer.feature.submit.SubmitNode;
-import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.LivingEntity;
 
-public class MaxRenderer extends MobRenderer<MaxEntity, MaxRenderState, MaxModel> {
+public class MaxRenderer extends MobRenderer<MaxEntity, MaxRenderState, MaxOldModel> {
     public MaxRenderer(EntityRendererProvider.Context context) {
-        super(context, new MaxModel(context.bakeLayer(ModModelLayerLocations.MAX)), 0.45f);
+        super(context, new MaxOldModel(context.bakeLayer(ModModelLayerLocations.MAX)), 0.45f);
     }
 
     @Override
@@ -35,9 +26,6 @@ public class MaxRenderer extends MobRenderer<MaxEntity, MaxRenderState, MaxModel
         super.extractRenderState(entity, state, partialTicks);
         state.idleAnimationState.copyFrom(entity.idleAnimationState);
     }
-    @Override
-    public void submit(MaxRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera){
 
-    }
 }
 
