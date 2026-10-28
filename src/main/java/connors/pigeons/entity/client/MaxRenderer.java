@@ -6,9 +6,9 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.Identifier;
 
-public class MaxRenderer extends MobRenderer<MaxEntity, MaxRenderState, MaxOldModel> {
+public class MaxRenderer extends MobRenderer<MaxEntity, MaxRenderState, MaxModel> {
     public MaxRenderer(EntityRendererProvider.Context context) {
-        super(context, new MaxOldModel(context.bakeLayer(ModModelLayerLocations.MAX)), 0.45f);
+        super(context, new MaxModel(context.bakeLayer(ModModelLayerLocations.MAX)), 0.45f);
     }
 
     @Override
