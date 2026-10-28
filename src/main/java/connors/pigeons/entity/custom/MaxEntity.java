@@ -118,6 +118,9 @@ public class MaxEntity extends TamableAnimal {
     public void openCustomInteractionScreen(Player player){
         if(!this.level().isClientSide()){
             ServerPlayer serverPlayer = (ServerPlayer) player;
+            if (serverPlayer.containerMenu != serverPlayer.inventoryMenu) {
+                serverPlayer.closeContainer();
+            }
 
         }
     }
