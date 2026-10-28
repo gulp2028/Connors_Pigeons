@@ -63,11 +63,11 @@ public class MaxEntity extends TamableAnimal {
                 return InteractionResult.CONSUME;
             }
         }
-        if(player.isCrouching()){
-            this.openCustomInteractionScreen(player);
-            return InteractionResult.SUCCESS;
+        //if(player.isCrouching()){
+           // this.openCustomInteractionScreen(player);
+            //return InteractionResult.SUCCESS;
 
-        }
+
         //copper golem mobinteract code
         else if ((interactionItem.isEmpty())) {
             ItemStack equippedItem = this.getMainHandItem();
@@ -114,14 +114,14 @@ public class MaxEntity extends TamableAnimal {
     @Override
     protected void pushEntities() {
     }
-    @Override
-    public void openCustomInteractionScreen(Player player){
-        if(!this.level().isClientSide()){
-            ServerPlayer serverPlayer = (ServerPlayer) player;
-            if (serverPlayer.containerMenu != serverPlayer.inventoryMenu) {
-                serverPlayer.closeContainer();
-            }
+    //@Override
+    //public void openCustomInteractionScreen(Player player){
+    //    if(!this.level().isClientSide()){
+   //         ServerPlayer serverPlayer = (ServerPlayer) player;
+      //      if (serverPlayer.containerMenu != serverPlayer.inventoryMenu) {
+     //           serverPlayer.closeContainer();
+     //       }
 
         }
-    }
-}
+
+
