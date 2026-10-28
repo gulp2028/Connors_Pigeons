@@ -2,6 +2,7 @@ package connors.pigeons.entity.custom;
 
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -112,5 +113,12 @@ public class MaxEntity extends TamableAnimal {
     }
     @Override
     protected void pushEntities() {
+    }
+    @Override
+    public void openCustomInteractionScreen(Player player){
+        if(!this.level().isClientSide()){
+            ServerPlayer serverPlayer = (ServerPlayer) player;
+
+        }
     }
 }
