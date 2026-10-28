@@ -10,10 +10,7 @@ import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.model.geom.builders.*;
 
 import javax.swing.text.html.parser.Entity;
 
@@ -28,6 +25,7 @@ public class MaxModel<T extends Entity> extends EntityModel<MaxRenderState> {
 	private final ModelPart body;
 
 	public MaxModel(ModelPart root) {
+		super(root);
 		this.head = root.getChild("head");
 		this.right_arm = root.getChild("right_arm");
 		this.left_arm = root.getChild("left_arm");
@@ -69,17 +67,9 @@ public class MaxModel<T extends Entity> extends EntityModel<MaxRenderState> {
 
 	@Override
 	public void setupAnim(MaxRenderState state) {
-
-
+		this.root().getAllParts().forEach(ModelPart::resetPose);
+		this.walkingAnimation.applyWalk(state.walkAnimationPos, state.walkAnimationSpeed, 2f, 2.6f);
+		this.idlingAnimation.apply(state.idleAnimationState, state.ageInTicks, 1f);
 	}
 
-	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-		right_arm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-		left_arm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-		left_leg.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-		right_leg.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-		body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-	}
 }
