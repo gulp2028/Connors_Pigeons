@@ -10,6 +10,7 @@ import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -45,6 +46,8 @@ public class MaxEntity extends TamableAnimal {
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack interactionItem = player.getItemInHand(hand);
+        Item tamingitem = Items.PAPER;
+        ItemStack item = player.getMainHandItem();
         ItemStack itemInHand = this.getItemInHand(InteractionHand.MAIN_HAND);
         //allay mobinteract code
         if (itemInHand.isEmpty() && !interactionItem.isEmpty()) {
@@ -53,6 +56,11 @@ public class MaxEntity extends TamableAnimal {
             this.removeInteractionItem(player, interactionItem);
             return InteractionResult.SUCCESS;
 
+        }
+        if(item == item && !isTame()) {
+            if(this.level().isClientSide()){
+                return InteractionResult.CONSUME;
+            }
         }
         if(player.isCrouching()){
 
