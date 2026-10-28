@@ -2,11 +2,11 @@
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import connors.pigeons.entity.client.MaxAnimations;
 import connors.pigeons.entity.client.MaxRenderState;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -23,6 +23,8 @@ public class MaxModel extends EntityModel <MaxRenderState> {
 	private final ModelPart left_leg;
 	private final ModelPart right_leg;
 	private final ModelPart body;
+	private final KeyframeAnimation walkingAnimation;
+	private final KeyframeAnimation idlingAnimation;
 
 	public MaxModel(ModelPart root) {
 		super(root);
@@ -64,7 +66,7 @@ public class MaxModel extends EntityModel <MaxRenderState> {
 
 		PartDefinition body_r1 = body.addOrReplaceChild("body_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -3.0F, -3.0F, 8.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, 0.0F, 3.1416F, 0.0F, 3.1416F));
 
-		return LayerDefinition.create(meshdefinition, 16, 16);
+		return LayerDefinition.create(meshdefinition, 32, 32);
 	}
 
 	@Override
