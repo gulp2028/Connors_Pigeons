@@ -63,6 +63,8 @@ public class MaxEntity extends TamableAnimal {
             }
         }
         if(player.isCrouching()){
+            this.openCustomInteractionScreen(player);
+            return InteractionResult.SUCCESS;
 
         }
         //copper golem mobinteract code
