@@ -2,6 +2,7 @@ package connors.pigeons.menu.custom;
 
 import connors.pigeons.Connorspigeons;
 import connors.pigeons.entity.custom.MaxEntity;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -26,4 +27,9 @@ public class MaxScreen extends Screen {
         titleLabelY = 12;
         inventoryLabelX = 1000;
     }
+    @Override
+    public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
+        super.extractBackground(graphics, mouseX, mouseY, partialTick);
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
 }
