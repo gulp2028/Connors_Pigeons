@@ -3,6 +3,7 @@ package connors.pigeons.item;
 import connors.pigeons.Connorspigeons;
 import connors.pigeons.entity.ModEntities;
 import connors.pigeons.item.custom.Pigeon_GloveItem;
+import connors.pigeons.item.custom.StampItem;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -20,6 +21,8 @@ public class ModItems {
             Pigeon_GloveItem::new);
     public static final Item MAX_SPAWN_EGG = registerItem("max_spawn_egg",
             properties -> new SpawnEggItem(properties.spawnEgg(ModEntities.MAX)));
+    public static final Item STAMP = registerItem("stamp", StampItem::new);
+
 
 
     private static Item registerItem(String name, Function<Item.Properties, Item> function) {

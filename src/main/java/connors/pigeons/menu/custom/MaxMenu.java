@@ -13,15 +13,19 @@ public class MaxMenu extends Screen {
     public MaxEntity max;
 
     protected MaxMenu(Component title) {
-        super(title);
-    }
-
-
-
+        super(title);}}
     public static MaxMenu create(int i, Inventory inventory, UUID uuid) {
         List<MaxEntity> turtles = inventory.player.level().getEntitiesOfClass(MaxEntity.class,
-                inventory.player.getBoundingBox().inflate(16), test -> test.getUUID().equals(uuid));
-        MaxEntity maxEntity = turtles.isEmpty() ? null : turtles.getFirst();
-        return new MaxMenu(i, inventory, new SimpleContainer(28), maxEntity, 4);
+                inventory.player.getBoundingBox().inflate(16),
+                test -> test.getUUID().equals(uuid)); MaxEntity maxEntity = turtles.isEmpty()
+                ? null : turtles.getFirst(); return new MaxMenu(i, inventory, new SimpleContainer(28),
+                maxEntity, 4);}
 
-}}
+    public MaxMenu(int containerid, Inventory inventory, SimpleContainer itemStacks, MaxEntity maxEntity, int columns)
+    { super(containerid, inventory, itemStacks, maxEntity, columns); }
+
+
+
+
+
+

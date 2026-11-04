@@ -20,16 +20,17 @@ public class MaxScreen extends Screen {
     public MaxScreen(MaxMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
         this.max = menu.max;
-    }
+
     @Override
     protected void init(){
         titleLabelX = 72;
         titleLabelY = 12;
         inventoryLabelX = 1000;
-    }
+
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-}
+
+
