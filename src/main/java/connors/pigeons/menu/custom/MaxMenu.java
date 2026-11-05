@@ -24,7 +24,7 @@ public class MaxMenu extends AbstractContainerMenu {
     private Container maxContainer;
     public MaxEntity max;
     public static final MaxMenu create(int i, Inventory inventory, UUID uuid){
-        List<MaxMenu> maxes = inventory.player.level().getEntitiesOfClass(MaxEntity.class,
+        List<MaxEntity> maxes = inventory.player.level().getEntitiesOfClass(MaxEntity.class,
                 inventory.player.getBoundingBox().inflate(16), test -> test.getUUID().equals(uuid));
         MaxEntity maxEntity = maxes.isEmpty() ? null : maxes.getFirst();
         return new MaxMenu(i, inventory, new SimpleContainer(2), maxEntity, 2);
@@ -38,7 +38,7 @@ public class MaxMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(maxContainer, 0, 8, 63) {
             @Override
             public boolean mayPlace(ItemStack itemStack) {
-                return itemStack.getItem() instanceof StampItem
+                return itemStack.getItem() instanceof StampItem;
             }
             @Override
             public int getMaxStackSize(){
@@ -47,9 +47,11 @@ public class MaxMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(maxContainer, 1, 44, 63) {
             @Override
             public boolean mayPlace(ItemStack itemStack) {
-                return itemStack.is(Items.CHEST);
+                return true;
             }
         });
+
+
     }
 
 
