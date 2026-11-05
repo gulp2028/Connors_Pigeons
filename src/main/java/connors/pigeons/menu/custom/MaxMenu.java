@@ -1,8 +1,10 @@
 package connors.pigeons.menu.custom;
 
 import connors.pigeons.entity.custom.MaxEntity;
+import connors.pigeons.menu.ModMenuTypes;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -21,6 +23,11 @@ public class MaxMenu extends AbstractContainerMenu {
         MaxEntity maxEntity = maxes.isEmpty() ? null : maxes.getFirst();
         return new MaxMenu(i, inventory, new SimpleContainer(2), maxEntity, 2);
     }
+    public MaxMenu(int containerId, Inventory inventory, Container maxContainer, final MaxEntity maxEntity, int columns) {
+        super(ModMenuTypes.MAX_MENU, containerId);
+        this.maxContainer = maxContainer;
+        this.max = maxEntity;
+        maxContainer.startOpen(inventory.player);
 
 
 
