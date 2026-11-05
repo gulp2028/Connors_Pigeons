@@ -16,9 +16,17 @@ import java.util.UUID;
 
 public class MaxMenu extends AbstractContainerMenu {
     public static final MaxMenu create(int i, Inventory inventory, UUID uuid){
-
-
+        List<MaxMenu> maxes = inventory.player.level().getEntitiesOfClass(MaxEntity.class,
+                inventory.player.getBoundingBox().inflate(16), test -> test.getUUID().equals(uuid));
+        MaxEntity maxEntity = maxes.isEmpty() ? null : maxes.getFirst();
+        return new MaxMenu(i, inventory, new SimpleContainer(2), maxEntity, 2);
     }
+
+
+
+
+
+
     protected MaxMenu(@Nullable MenuType<?> menuType, int containerId) {
         super(menuType, containerId);
     }
