@@ -72,7 +72,7 @@ public class MaxMenu extends AbstractContainerMenu {
     public void removed(Player player) {
         super.removed(player);
         this.maxContainer.stopOpen(player);
-    }}}}
+    }}
 
 
 
