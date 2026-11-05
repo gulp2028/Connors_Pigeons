@@ -38,15 +38,19 @@ public class MaxMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(maxContainer, 0, 8, 63) {
             @Override
             public boolean mayPlace(ItemStack itemStack) {
-                return itemStack.getItem() instanceof StampItem;}});
-        this.addSlot(new Slot(maxContainer, 1, 44, 63)){
-            @Override
-            public boolean mayPlace(ItemStack itemStack){
-                return itemStack.is(Items.CHEST);}
+                return itemStack.getItem() instanceof StampItem
+            }
             @Override
             public int getMaxStackSize(){
                 return 1;
-            }}}
+        }});
+        this.addSlot(new Slot(maxContainer, 1, 44, 63) {
+            @Override
+            public boolean mayPlace(ItemStack itemStack) {
+                return itemStack.is(Items.CHEST);
+            }
+        });
+    }
 
 
 
