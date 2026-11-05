@@ -18,10 +18,12 @@ import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
 
 
-public class MaxEntity extends TamableAnimal {
-    public final AnimationState idleAnimationState =  new AnimationState();
+public class MaxEntity extends TamableAnimal implements HasCustomInventoryScreen {
+    public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
-    public MaxEntity(EntityType<? extends TamableAnimal> Entitytype, Level world){
+
+
+    public MaxEntity(EntityType<? extends TamableAnimal> Entitytype, Level world) {
         super(Entitytype, world);
         this.getNavigation().setCanOpenDoors(true);
     }
@@ -33,8 +35,9 @@ public class MaxEntity extends TamableAnimal {
                 .add(Attributes.TEMPT_RANGE, 16d)
                 .add(Attributes.FOLLOW_RANGE, 24D);
     }
+
     @Override
-    protected void registerGoals(){
+    protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 2f));
         this.goalSelector.addGoal(2, new TemptGoal(this, 1.2f, stack -> stack.is(Items.PAPER), false));
@@ -51,7 +54,7 @@ public class MaxEntity extends TamableAnimal {
         ItemStack item = player.getMainHandItem();
         ItemStack itemInHand = this.getItemInHand(InteractionHand.MAIN_HAND);
         //allay mobinteract code
-        if(player.isCrouching()) {
+        if (player.isCrouching()) {
             this.openCustomInteractionScreen(player);
             return InteractionResult.SUCCESS;
         }
@@ -60,16 +63,14 @@ public class MaxEntity extends TamableAnimal {
             this.setItemInHand(InteractionHand.MAIN_HAND, itemToGive);
             this.removeInteractionItem(player, interactionItem);
             return InteractionResult.SUCCESS;
-
         }
-        if(interactionItem.is(Items.PAPER) && !isTame()) {
-            if(this.level().isClientSide()){
+        if (interactionItem.is(Items.PAPER) && !isTame()) {
+            if (this.level().isClientSide()) {
                 return InteractionResult.CONSUME;
             }
             this.tame(player);
             interactionItem.consume(1, player);
             return InteractionResult.SUCCESS;
-
         }
 
 
@@ -79,11 +80,22 @@ public class MaxEntity extends TamableAnimal {
             if (!equippedItem.isEmpty()) {
                 BehaviorUtils.throwItem(this, equippedItem, player.position());
                 this.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
-                return InteractionResult.SUCCESS;}
+                return InteractionResult.SUCCESS;
+            }
         }
 
         return super.mobInteract(player, hand);
     }
+
+
+    public void openCustomInteractionScreen(Player player) {
+        if (!this.level().isClientSide()) {
+            ServerPlayer serverPlayer = (ServerPlayer) player;
+            if (serverPlayer.containerMenu != serverPlayer.inventoryMenu) {
+                serverPlayer.closeContainer();
+            }
+    }}
+
     private void removeInteractionItem(final Player player, final ItemStack interactionItem) {
         ItemStack itemToGive = interactionItem.copyWithCount(1);
         this.setItemInHand(InteractionHand.MAIN_HAND, itemToGive);
@@ -91,19 +103,19 @@ public class MaxEntity extends TamableAnimal {
     }
 
 
-
-    private void setupAnimationStates(){
-        if(this.idleAnimationTimeout <= 0){
+    private void setupAnimationStates() {
+        if (this.idleAnimationTimeout <= 0) {
             this.idleAnimationTimeout = 20;
             this.idleAnimationState.start(this.tickCount);
-        }else{
+        } else {
             --this.idleAnimationTimeout;
         }
     }
+
     @Override
-    public void tick(){
+    public void tick() {
         super.tick();
-        if(this.level().isClientSide()){
+        if (this.level().isClientSide()) {
             this.setupAnimationStates();
         }
     }
@@ -118,17 +130,14 @@ public class MaxEntity extends TamableAnimal {
     public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob partner) {
         return null;
     }
+
     @Override
     protected void pushEntities() {
     }
+
+
     @Override
-    public void openCustomInteractionScreen(Player player){
-        if(!this.level().isClientSide()){
-            ServerPlayer serverPlayer = (ServerPlayer) player;
-            if (serverPlayer.containerMenu != serverPlayer.inventoryMenu) {
-                serverPlayer.closeContainer();
-            }
-
-        }
-
+    public void openCustomInventoryScreen(Player player) {
+    }
+}
 
