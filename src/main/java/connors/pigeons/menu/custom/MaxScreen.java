@@ -29,8 +29,12 @@ public class MaxScreen extends AbstractContainerScreen<MaxMenu> {
 
         inventoryLabelX = 1000;
     }
-
     public MaxScreen(MaxMenu menu, Inventory inventory, Component title, int imageWidth, int imageHeight) {
         super(menu, inventory, title, imageWidth, imageHeight);
     }
-}
+    @Override
+    public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
+        super.extractBackground(graphics, mouseX, mouseY, partialTick);
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+}}
