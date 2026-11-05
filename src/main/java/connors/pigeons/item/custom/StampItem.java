@@ -15,6 +15,10 @@ public class StampItem extends Item {
     public StampItem(Properties properties){
         super(properties);
     }
+    @Override
+    public void onCraftedBy(ItemStack itemStack, Player crafter){
+
+    }
 
 
 }
