@@ -48,12 +48,11 @@ public class MaxMenu extends AbstractContainerMenu {
                 return itemStack.is(Items.CHEST);
             }
             @Override
-            public int getMaxStackSize () {
+            public int getMaxStackSize() {
                 return 1;
 
             }
         );
-}}
 
     @Override
     public ItemStack quickMoveStack(Player player, int slotIndex) {
@@ -61,16 +60,16 @@ public class MaxMenu extends AbstractContainerMenu {
     }
     @Override
     public boolean stillValid(Player player) {
-        return !this.max.hasInventoryChanged(this.warturtleContainer)
-                && this.warturtleContainer.stillValid(player)
-                && this.warturtle.isAlive()
-                && player.isWithinEntityInteractionRange(this.warturtle, 4.0);
+        return !this.max.hasInventoryChanged(this.maxContainer)
+                && this.maxContainer.stillValid(player)
+                && this.max.isAlive()
+                && player.isWithinEntityInteractionRange(this.max, 4.0);
     }
 
     @Override
     public void removed(Player player) {
         super.removed(player);
-        this.warturtleContainer.stopOpen(player);
+        this.maxContainer.stopOpen(player);
     }
 
 
