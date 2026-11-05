@@ -5,24 +5,13 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 
 import java.util.List;
 import java.util.UUID;
 
-public class MaxMenu extends Screen {
+public class MaxMenu extends AbstractContainerMenu {
     public MaxEntity max;
-
-    protected MaxMenu(Component title) {
-        super(title);}}
-    public static MaxMenu create(int i, Inventory inventory, UUID uuid) {
-        List<MaxEntity> turtles = inventory.player.level().getEntitiesOfClass(MaxEntity.class,
-                inventory.player.getBoundingBox().inflate(16),
-                test -> test.getUUID().equals(uuid)); MaxEntity maxEntity = turtles.isEmpty()
-                ? null : turtles.getFirst(); return new MaxMenu(i, inventory, new SimpleContainer(28),
-                maxEntity, 4);}
-
-    public MaxMenu(int containerid, Inventory inventory, SimpleContainer itemStacks, MaxEntity maxEntity, int columns)
-    { super(containerid, inventory, itemStacks, maxEntity, columns); }
 
 
 

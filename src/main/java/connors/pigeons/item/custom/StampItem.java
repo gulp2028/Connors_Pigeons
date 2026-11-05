@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.Level;
 
 import java.util.UUID;
@@ -25,6 +26,10 @@ public class StampItem extends Item {
         tag.putString("Recipient", crafter.getUUID().toString());
         itemStack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
         itemStack.set(DataComponents.CUSTOM_NAME, Component.literal("Stamp of:" + crafter.getName().getString()));
+
+        int colour = crafter.getUUID().hashCode() & 0xFFFFFF;
+        itemStack.set(DataComponents.DYED_COLOR,
+                new DyedItemColor(colour));
         }
 
     }
