@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class MaxMenu extends AbstractContainerMenu {
+    private Container maxContainer;
+    public MaxEntity max;
     public static final MaxMenu create(int i, Inventory inventory, UUID uuid){
         List<MaxMenu> maxes = inventory.player.level().getEntitiesOfClass(MaxEntity.class,
                 inventory.player.getBoundingBox().inflate(16), test -> test.getUUID().equals(uuid));
@@ -50,31 +52,28 @@ public class MaxMenu extends AbstractContainerMenu {
                 return 1;
 
             }
-        });
-
-
-
-
-
-
-
-
-
-
-
-    protected MaxMenu(@Nullable MenuType<?> menuType, int containerId) {
-        super(menuType, containerId);
-    }
+        );
+}}
 
     @Override
     public ItemStack quickMoveStack(Player player, int slotIndex) {
         return null;
     }
-
     @Override
     public boolean stillValid(Player player) {
-        return false;
+        return !this.max.hasInventoryChanged(this.warturtleContainer)
+                && this.warturtleContainer.stillValid(player)
+                && this.warturtle.isAlive()
+                && player.isWithinEntityInteractionRange(this.warturtle, 4.0);
     }
+
+    @Override
+    public void removed(Player player) {
+        super.removed(player);
+        this.warturtleContainer.stopOpen(player);
+    }
+
+
 }
 
 
