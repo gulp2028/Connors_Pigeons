@@ -14,6 +14,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -32,14 +33,27 @@ public class MaxMenu extends AbstractContainerMenu {
         this.max = maxEntity;
         maxContainer.startOpen(inventory.player);
 
-
         //Stamp slot XD
         this.addSlot(new Slot(maxContainer, 0, 8, 63) {
             @Override
             public boolean mayPlace(ItemStack itemStack) {
                 return itemStack.getItem() instanceof StampItem;
+            }});
+        //Item to be sent
+        this.addSlot(new Slot(maxContainer, 1, 44, 63)) {
+            @Override
+            public boolean mayPlace(ItemStack itemStack){
+                return itemStack.is(Items.CHEST);
+            }
+            @Override
+            public int getMaxStackSize () {
+                return 1;
+
             }
         });
+
+
+
 
 
 
