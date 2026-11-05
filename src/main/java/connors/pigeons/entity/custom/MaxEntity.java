@@ -62,6 +62,10 @@ public class MaxEntity extends TamableAnimal {
             if(this.level().isClientSide()){
                 return InteractionResult.CONSUME;
             }
+            this.tame(player);
+            interactionItem.consume(1, player);
+            return InteractionResult.SUCCESS;
+
         }
         if(player.isCrouching()) {
             this.openCustomInteractionScreen(player);
