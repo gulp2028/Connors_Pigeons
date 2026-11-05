@@ -34,46 +34,39 @@ public class MaxMenu extends AbstractContainerMenu {
         this.maxContainer = maxContainer;
         this.max = maxEntity;
         maxContainer.startOpen(inventory.player);
-
         //Stamp slot XD
         this.addSlot(new Slot(maxContainer, 0, 8, 63) {
             @Override
             public boolean mayPlace(ItemStack itemStack) {
-                return itemStack.getItem() instanceof StampItem;
-            }});
-        //Item to be sent
-        this.addSlot(new Slot(maxContainer, 1, 44, 63)) {
+                return itemStack.getItem() instanceof StampItem;}});
+        this.addSlot(new Slot(maxContainer, 1, 44, 63)){
             @Override
             public boolean mayPlace(ItemStack itemStack){
-                return itemStack.is(Items.CHEST);
-            }
+                return itemStack.is(Items.CHEST);}
             @Override
-            public int getMaxStackSize() {
+            public int getMaxStackSize(){
                 return 1;
+            }}}
 
-            }
-        );
+
+
+
+
 
     @Override
     public ItemStack quickMoveStack(Player player, int slotIndex) {
-        return null;
-    }
+        return null;}
     @Override
     public boolean stillValid(Player player) {
         return !this.max.hasInventoryChanged(this.maxContainer)
                 && this.maxContainer.stillValid(player)
                 && this.max.isAlive()
-                && player.isWithinEntityInteractionRange(this.max, 4.0);
-    }
-
+                && player.isWithinEntityInteractionRange(this.max, 4.0);}
     @Override
     public void removed(Player player) {
         super.removed(player);
         this.maxContainer.stopOpen(player);
-    }
-
-
-}
+    }}}}
 
 
 
