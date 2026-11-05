@@ -1,6 +1,7 @@
 package connors.pigeons.menu.custom;
 
 import connors.pigeons.entity.custom.MaxEntity;
+import connors.pigeons.item.custom.StampItem;
 import connors.pigeons.menu.ModMenuTypes;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -10,6 +11,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.jspecify.annotations.Nullable;
 
@@ -28,6 +31,17 @@ public class MaxMenu extends AbstractContainerMenu {
         this.maxContainer = maxContainer;
         this.max = maxEntity;
         maxContainer.startOpen(inventory.player);
+
+
+        //Stamp slot XD
+        this.addSlot(new Slot(maxContainer, 0, 8, 63) {
+            @Override
+            public boolean mayPlace(ItemStack itemStack) {
+                return itemStack.getItem() instanceof StampItem;
+            }
+        });
+
+
 
 
 
