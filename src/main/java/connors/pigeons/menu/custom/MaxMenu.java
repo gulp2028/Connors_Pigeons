@@ -49,15 +49,7 @@ public class MaxMenu extends AbstractContainerMenu {
             public boolean mayPlace(ItemStack itemStack) {
                 return true;
             }
-        });
-
-
-    }
-
-
-
-
-
+        });}
 
     @Override
     public ItemStack quickMoveStack(Player player, int slotIndex) {

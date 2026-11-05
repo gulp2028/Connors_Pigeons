@@ -58,15 +58,15 @@ public class MaxEntity extends TamableAnimal {
             return InteractionResult.SUCCESS;
 
         }
-        if(item == item && !isTame()) {
+        if(interactionItem.is(Items.PAPER) && !isTame()) {
             if(this.level().isClientSide()){
                 return InteractionResult.CONSUME;
             }
         }
-        if(player.isCrouching()){
-           this.openCustomInteractionScreen(player);
-           return InteractionResult.SUCCESS;
-
+        if(player.isCrouching()) {
+            this.openCustomInteractionScreen(player);
+            return InteractionResult.SUCCESS;
+        }
 
         //copper golem mobinteract code
         else if ((interactionItem.isEmpty())) {
